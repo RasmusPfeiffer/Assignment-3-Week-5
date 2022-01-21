@@ -64,7 +64,7 @@ public class UserService {
 				System.out.println("Invalid login, please try again.");
 				this.u = 0;
 				this.getInput();
-			} else if (match = true) {
+			} else if (match == true) {
 				if (oTemporary.getPassword().equals(aUsers[u].getPassword())) {
 					System.out.println("Welcome " + aUsers[u].getName());
 				} else {
