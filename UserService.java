@@ -57,7 +57,7 @@ public class UserService {
 
 		switch (aUsers[u].getUnsuccesfullLogins()) {
 		case 0, 1, 2, 3:
-			for (u = 0; u <= 3; this.u++) {
+			for (u = 0; u <= aUsers.length; this.u++) {
 				if (oTemporary.getUsername().equalsIgnoreCase(aUsers[u].getUsername())) {
 					this.match = true;
 					break;
