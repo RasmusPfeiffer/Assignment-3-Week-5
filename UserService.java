@@ -58,11 +58,13 @@ public class UserService {
 				if (oTemporary.getUsername().equalsIgnoreCase(aUsers[u].getUsername())) {
 					this.match = true;
 					break;
-				} else if (match = false){
-					System.out.println("Invalid login, please try again.");
 				}
 			}
-			if (match = true) {
+			if (match == false) {
+				System.out.println("Invalid login, please try again.");
+				this.u = 0;
+				this.getInput();
+			} else if (match = true) {
 				if (oTemporary.getPassword().equals(aUsers[u].getPassword())) {
 					System.out.println("Welcome " + aUsers[u].getName());
 				} else {
