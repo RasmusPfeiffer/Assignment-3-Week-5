@@ -15,10 +15,9 @@ public class UserService {
 	int l = 0;
 	boolean match = false;
 
-	public POJO createUserArray() {
+	public POJO createUserArray(String[] aSplit) {
 
 		this.oUser = new POJO();
-		String[] aSplit = sData.split(",");
 		oUser.setUsername(aSplit[0]);
 		oUser.setPassword(aSplit[1]);
 		oUser.setName(aSplit[2]);
@@ -31,7 +30,8 @@ public class UserService {
 		BufferedReader reader = new BufferedReader(new FileReader(sFilename));
 		try {
 			while ((sData = reader.readLine()) != null) {
-				this.createUserArray();
+				String[] aSplit = sData.split(",");
+				this.createUserArray(aSplit);
 				this.i++;
 			}
 		} finally {
