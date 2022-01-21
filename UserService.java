@@ -30,9 +30,6 @@ public class UserService {
 	public void datasystem(String sFilename) throws IOException {
 
 		BufferedReader reader = new BufferedReader(new FileReader(sFilename));
-		this.sData = reader.readLine();
-		this.createUserArray();
-		this.i++;
 		while ((sData = reader.readLine()) != null) {
 			this.createUserArray();
 			this.i++;
