@@ -29,11 +29,14 @@ public class UserService {
 	public void datasystem(String sFilename) throws IOException {
 
 		BufferedReader reader = new BufferedReader(new FileReader(sFilename));
-		while ((sData = reader.readLine()) != null) {
-			this.createUserArray();
-			this.i++;
+		try {
+			while ((sData = reader.readLine()) != null) {
+				this.createUserArray();
+				this.i++;
+			}
+		} finally {
+			reader.close();
 		}
-		reader.close();
 	}
 
 	public void getInput() {
