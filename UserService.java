@@ -55,33 +55,27 @@ public class UserService {
 
 	public void checkUser(POJO oTemporary) {
 
-		switch (aUsers[u].getUnsuccesfullLogins()) {
-		case 0, 1, 2, 3:
-			for (u = 0; u <= aUsers.length; this.u++) {
-				if (oTemporary.getUsername().equalsIgnoreCase(aUsers[u].getUsername())) {
-					this.match = true;
-					break;
-				}
+		for (u = 0; u <= aUsers.length; this.u++) {
+			if (oTemporary.getUsername().equalsIgnoreCase(aUsers[u].getUsername())) {
+				this.match = true;
+				break;
 			}
-			if (match == false) {
+		}
+		if (match == false) {
+			System.out.println("Invalid login, please try again.");
+			this.u = 0;
+			this.getInput();
+		} else if (match == true) {
+			if (oTemporary.getPassword().equals(aUsers[u].getPassword())) {
+				System.out.println("Welcome " + aUsers[u].getName());
+			} else if (aUsers[u].getUnsuccesfullLogins() <= 3) {
 				System.out.println("Invalid login, please try again.");
-				this.u = 0;
+				this.l++;
+				aUsers[u].setUnsuccesfullLogins(l);
 				this.getInput();
-			} else if (match == true) {
-				if (oTemporary.getPassword().equals(aUsers[u].getPassword())) {
-					System.out.println("Welcome " + aUsers[u].getName());
-				} else {
-					System.out.println("Invalid login, please try again.");
-					this.l++;
-					aUsers[u].setUnsuccesfullLogins(l);
-					this.getInput();
-				}
+			} else {
+				System.out.println("Too many failed login attempts, you are now locked out.");
 			}
-			break;
-
-		case 4:
-			System.out.println("Too many failed login attempts, you are now locked out.");
-			break;
 		}
 	}
 }
