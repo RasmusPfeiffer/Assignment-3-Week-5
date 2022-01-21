@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class UserService {
 
-	String[] users;
 	POJO oUser;
 	POJO[] aUsers = new POJO[4];
 	String sData;
