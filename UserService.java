@@ -55,7 +55,7 @@ public class UserService {
 
 	public void checkUser(POJO oTemporary) {
 
-		for (u = 0; u <= aUsers.length; this.u++) {
+		for (u = 0; u <= 3; this.u++) {
 			if (oTemporary.getUsername().equalsIgnoreCase(aUsers[u].getUsername())) {
 				this.match = true;
 				break;
