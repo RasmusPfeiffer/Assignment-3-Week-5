@@ -43,7 +43,6 @@ public class UserService {
 
 		Scanner input = new Scanner(System.in);
 		try {
-
 			System.out.print("Please enter your Username:\n>");
 			String userName = input.nextLine();
 			System.out.print("Please enter your Password:\n>");
