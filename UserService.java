@@ -7,21 +7,21 @@ import java.util.Scanner;
 
 public class UserService {
 
-	POJO oUser;
-	POJO[] aUsers = new POJO[4];
+	User oUser;
+	User[] aUsers = new User[4];
 	String sData;
-	int i = 0;
+	int iSort = 0;
 	int iUser = 0;
 	int iGeneralLogins = 0;
 	boolean match = false;
 
-	public POJO createUserArray(String[] aSplit) {
+	public User createUserArray(String[] aSplit) {
 
-		this.oUser = new POJO();
+		this.oUser = new User();
 		oUser.setUsername(aSplit[0]);
 		oUser.setPassword(aSplit[1]);
 		oUser.setName(aSplit[2]);
-		this.aUsers[i] = oUser;
+		this.aUsers[iSort] = oUser;
 		return oUser;
 	}
 
@@ -32,7 +32,7 @@ public class UserService {
 			while ((sData = reader.readLine()) != null) {
 				String[] aSplit = sData.split(",");
 				this.createUserArray(aSplit);
-				this.i++;
+				this.iSort++;
 			}
 		} finally {
 			reader.close();
@@ -47,7 +47,7 @@ public class UserService {
 			String userName = input.nextLine();
 			System.out.print("Please enter your Password:\n>");
 			String password = input.nextLine();
-			POJO oTemporary = new POJO();
+			User oTemporary = new User();
 			oTemporary.setUsername(userName);
 			oTemporary.setPassword(password);
 			this.checkUser(oTemporary);
@@ -56,29 +56,21 @@ public class UserService {
 		}
 	}
 
-	public void checkUser(POJO oTemporary) {
+	public void checkUser(User oTemporary) {
 
-		for (iUser = 0; iUser <= 3; this.iUser++) {
+		for (iUser = 0; iUser < aUsers.length-1; this.iUser++) {
 			if (oTemporary.getUsername().equalsIgnoreCase(aUsers[iUser].getUsername())) {
 				this.match = true;
 				break;
 			}
 		}
-		if (match == true) {
-			this.matchHandler(oTemporary);
-		} else {
-			this.noMatchHandler();
-		}
-	}
-
-	public void matchHandler(POJO oTemporary) {
-
-		if (oTemporary.getPassword().equals(aUsers[iUser].getPassword())) {
+		if (match == true && oTemporary.getPassword().equals(aUsers[iUser].getPassword())) {
 			System.out.println("Welcome " + aUsers[iUser].getName());
 		} else {
 			this.iGeneralLogins++;
+			this.iUser = 0;
 			switch (iGeneralLogins) {
-			case 1, 2, 3, 4 :
+			case 1, 2, 3, 4:
 				System.out.println("Invalid login, please try again.");
 				this.getInput();
 				break;
@@ -86,18 +78,6 @@ public class UserService {
 				System.out.println("Too many failed login attempts, you are now locked out.");
 				break;
 			}
-		}
-	}
-
-	public void noMatchHandler() {
-
-		if (iGeneralLogins < 4) {
-			System.out.println("Invalid login, please try again.");
-			this.iUser = 0;
-			this.iGeneralLogins++;
-			this.getInput();
-		} else {
-			System.out.println("Too many failed login attempts, you are now locked out.");
 		}
 	}
 }
