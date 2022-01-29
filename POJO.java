@@ -1,11 +1,10 @@
 package assignment3;
 
-public class POJO {
+public class User {
 
 	private String username;
 	private String password;
 	private String name;
-	private int unsuccesfullLogins;
 	
 	public String getUsername() {
 		return username;
@@ -29,13 +28,5 @@ public class POJO {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setUnsuccesfullLogins(int unsuccesfullLogins) {
-		this.unsuccesfullLogins = unsuccesfullLogins;
-	}
-	
-	public int getUnsuccesfullLogins() {
-		return unsuccesfullLogins;
 	}
 }
